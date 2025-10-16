@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Number to Words Converter</title>
+  <script src="https://cdn.jsdelivr.net/npm/number-to-words"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: white;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 500px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+    }
+    
+    .header {
+      background: #4e54c8;
+      color: white;
+      padding: 25px;
+      text-align: center;
+    }
+    
+    .header h1 {
+      font-weight: 600;
+      font-size: 28px;
+      margin-bottom: 5px;
+    }
+    
+    .header p {
+      opacity: 0.9;
+    }
+    
+    .content {
+      padding: 25px;
+    }
+    
+    .input-group {
+      display: flex;
+      margin-bottom: 20px;
+    }
+    
+    input {
+      flex: 1;
+      padding: 16px;
+      border: 2px solid #ddd;
+      border-radius: 8px 0 0 8px;
+      font-size: 18px;
+      transition: border-color 0.3s;
+    }
+    
+    input:focus {
+      outline: none;
+      border-color: #4e54c8;
+    }
+    
+    button {
+      background: #4e54c8;
+      color: white;
+      border: none;
+      border-radius: 0 8px 8px 0;
+      padding: 0 24px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    
+    button:hover {
+      background: #3a3eb9;
+    }
+    
+    #result {
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 8px;
+      background: #f8f9fa;
+      min-height: 80px;
+      font-size: 22px;
+      text-align: center;
+      font-weight: 500;
+      color: #2c3e50;
+      border-left: 5px solid #4e54c8;
+      transition: all 0.3s;
+    }
+    
+    .error {
+      color: #e74c3c;
+      border-left-color: #e74c3c;
+    }
+ 
+      input {
+        border-radius: 8px;
+        margin-bottom: 10px;
+      }
+      
+      button {
+        border-radius: 8px;
+        padding: 12px;
+      }
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Number to Words Converter</h1>
+      <p>Convert numbers from 1 to 1000 into words</p>
+    </div>
+    
+    <div class="content">
+      <div class="input-group">
+        <input type="number" id="numberInput" min="1" max="1000" placeholder="Enter a number (1-1000)" />
+        <button onclick="convertNumtoWords()">Convert</button>
+      </div>
+      
+      <div id="result">Your result will appear here</div>
+      
+  </div>
+
+  <script>
+    function convertNumtoWords() {
+      let inputVal = parseInt(document.getElementById("numberInput").value);
+      let resultDiv = document.getElementById("result");
+
+      if (isNaN(inputVal) || inputVal < 1 || inputVal > 1000) {
+        resultDiv.textContent = "Please enter a valid number between 1 and 1000";
+        
+      } else {
+        const words = numberToWords.toWords(inputVal);
+        resultDiv.textContent = words.charAt(0).toUpperCase() + words.slice(1);
+        
+      }
+    }
+    
+    document.getElementById('numberInput').addEventListener('keyup', function(event) {
+      if (event.key === 'Enter') {
+        showNumber();
+      }
+    });
+  </script>
+</body>
+</html>
