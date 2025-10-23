@@ -25,4 +25,4 @@ app.get("/" , (req, res) =>{
     ])
 })
 
-app.listen(PORT ,()=> `${PORT} Connected`)
+app.listen(port ,()=> `${port} Connected`)
